@@ -26,7 +26,7 @@ public class Player extends Actor
             setLocation(getX() + 5, getY());
         }
     }
-    private void catchObject(){
+    private  void catchObject(){
         FallingObject object = (FallingObject)getOneIntersectingObject(FallingObject.class);
 
         if (object != null)
@@ -35,15 +35,15 @@ public class Player extends Actor
             MyWorld world = (MyWorld)getWorld();
             world.addScore();
     }
-}
-private void hitBadObject(){
-    BadObject object =
+    }
+    private void hitBadObject(){
+        BadObject object =
             (BadObject)getOneIntersectingObject(BadObject.class);
 
         if (object != null)
         {
             MyWorld world = (MyWorld)getWorld();
             world.gameOver();
-}
-}
+        }
+    }
 }
