@@ -59,4 +59,8 @@ public class MyWorld extends World
         showText("GAME OVER!", 300, 200); 
         Greenfoot.stop();
     }
+    
+    public int getScore(){
+        return score;
+    }
 }

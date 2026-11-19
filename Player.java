@@ -17,6 +17,12 @@ public class Player extends Actor
         move();
         catchObject();
         hitBadObject();// Add your action code here.
+        if(isGameWon()){
+            transitionToGameWonWorld();
+        }
+        if(Greenfoot.isKeyDown("space")){
+            Greenfoot.playSound("eating.wav");
+        }
     }
     private void move(){
         if (Greenfoot.isKeyDown("left")){
@@ -31,6 +37,7 @@ public class Player extends Actor
 
         if (object != null)
         {
+            Greenfoot.playSound("eating.wav");
             getWorld().removeObject(object);
             MyWorld world = (MyWorld)getWorld();
             world.addScore();
@@ -42,8 +49,27 @@ public class Player extends Actor
 
         if (object != null)
         {
-            MyWorld world = (MyWorld)getWorld();
-            world.gameOver();
+            Greenfoot.playSound("explosion.wav");
+            transitionToGameOverWolrd();
         }
+    }
+    
+    public void transitionToGameWonWorld(){
+        World gameWonWorld = new GameWonWorld(); 
+        Greenfoot.setWorld(gameWonWorld);
+    }
+    
+    public boolean isGameWon(){
+        MyWorld world = (MyWorld)getWorld(); 
+        if(world.getScore() == 10){
+            return true; 
+        } else {
+            return false; 
+        }
+    }
+    
+    public void transitionToGameOverWolrd(){
+        World gameOverWorld = new GameOverWorld();
+        Greenfoot.setWorld(gameOverWorld);
     }
 }
